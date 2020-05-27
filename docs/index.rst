@@ -5,7 +5,9 @@ os-release Documentation
    :maxdepth: 2
    :caption: Contents:
 
-![PyPI](https://img.shields.io/pypi/v/os-release)
+.. image:: https://img.shields.io/pypi/v/os-release
+    :target: https://pypi.org/project/os-release/
+    :alt: os-release on PyPI
 
 *os-release* is a simple Python module for reading systemd's ``os-release`` information on modern Linux distributions.
 
