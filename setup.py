@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='os-release',
-    version='1.0',
+    version='1.0.1',
     packages=['os_release'],
 
     author="Adam Zegelin",
