@@ -1,5 +1,7 @@
+import platform
+import sys
 from pathlib import Path
-from unittest import TestCase
+from unittest import TestCase, skipUnless
 
 from os_release import OsRelease, parser, current_release
 from os_release.parser import OsReleaseParseException
@@ -74,6 +76,6 @@ class Test(TestCase):
                 else:
                     self.assertDictEqual(parser.parse_str(line), expected)
 
-
+    @skipUnless(platform.system() == 'Linux', "requires Linux")
     def test_current_release(self):
         current_release()

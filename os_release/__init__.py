@@ -209,10 +209,10 @@ class OsRelease(NamedTuple):
             :param query: the id to test
         """
 
-        if self.id == id:
+        if self.id == query:
             return True
 
-        return id in self.id_like
+        return query in self.id_like
 
 
 def current_release() -> OsRelease:
