@@ -28,7 +28,7 @@ def variable():
         )
 
     def unquoted_string():
-        return _(r'[a-zA-Z_0-9]*')
+        return _(r'[a-zA-Z_0-9\-]*')
 
     def value():
         return [unquoted_string,

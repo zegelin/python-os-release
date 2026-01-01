@@ -1,7 +1,7 @@
 import platform
 import sys
 from pathlib import Path
-from unittest import TestCase, skipUnless
+from unittest import main, TestCase, skipUnless
 
 from os_release import OsRelease, parser, current_release
 from os_release.parser import OsReleaseParseException
@@ -26,7 +26,9 @@ class Test(TestCase):
              FOO=bar'''))
 
     def test_dist_files(self):
-        for p in Path('dist-files').glob('*-os-release'):
+        dir = Path(__file__).parent / 'dist-files'
+        self.assertTrue(dir.exists(), 'dist-files must exist')
+        for p in dir.glob('*-os-release'):
             with self.subTest(file=p):
                 OsRelease.read(p)
 
@@ -52,6 +54,7 @@ class Test(TestCase):
         tests = [
             # valid values
             ('FOO=bar',                         {'FOO': 'bar'}),
+            ('FOO=bar-baz',                     {'FOO': 'bar-baz'}),
             ('A_B=bar',                         {'A_B': 'bar'}),
             ('A12=bar',                         {'A12': 'bar'}),
             ('_AB = c',                         {'_AB': 'c'}),
@@ -61,7 +64,6 @@ class Test(TestCase):
             ('FOO = " bar \t "  ',              {'FOO': ' bar \t '}),
             ("FOO = ' bar \t '  ",              {'FOO': ' bar \t '}),
             ('FOO = "\\$ \\" \\\' \\\\ \\`"',   {'FOO': '$ " \' \\ `'}),
-
 
             ('A B = c',                         None),
             ('12 = c',                          None),
